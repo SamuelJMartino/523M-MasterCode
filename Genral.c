@@ -23,7 +23,7 @@ void setPIDValues()
 	LiftPidValues.kP = -3.00;
 	LiftPidValues.kI = 0.00;
 	LiftPidValues.kD = -15.00;
-	turnPIDValues.kP = 0.00;
+	turnPIDValues.kP = -1.00;
 	turnPIDValues.kI = 0.00;
 	turnPIDValues.kD = 0.00;
 }

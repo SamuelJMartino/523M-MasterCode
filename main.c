@@ -1,3 +1,4 @@
+#pragma config(Sensor, in8,    autonSel,       sensorPotentiometer)
 #pragma config(Sensor, dgtl1,  lift,           sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  drive,          sensorQuadEncoder)
 #pragma config(Sensor, dgtl5,  drive1,         sensorQuadEncoder)
@@ -32,6 +33,7 @@ void pre_auton()
 	SensorValue (lift) = 0;
 	setPIDValues();
 	liftPidEnabled=true
+	turnPidEnabled=true;
 
 
 
@@ -47,49 +49,62 @@ void pre_auton()
 task autonomous()
 {
 startTask (drivePid);
-drivePidEnabled=false;
-turnPidEnabled=false;
-wait1Msec(90000);
 
 
 
-liftPidEnabled=true;
-	//setPIDValues();
-	//startTask (pid);
-	//liftTarget=-230;
-	//wait1Msec(1000);
-	//setMogo(0);
-	//setChassis(-127,-127);
-	//setMogo(-127);
-	//wait1Msec(1000);
-	//setChassis(0,0);
-	//setMogo(-10);
-	//setClaw(127);
-	//wait1Msec(500);
-	//setClaw(0);
-	//setMogo(127);
-	//wait1Msec(1000);
-	//setMogo(0);
-	//liftTarget=-1552;
-	//wait1Msec(500);
-	//setChassis(127,127);
-	//wait1Msec(400);
-	//setChassis(0,0);
-	//wait1Msec(1000);
-	//setChassis(-127,127);
-	//wait1Msec(600);
-	//setChassis(0,0);
-	//setMogo(-127);
-	//wait1Msec(600);
-	//setMogo(0);
-	//setChassis(127,127);
-	//wait1Msec(350);
-	//setChassis(0,0);
-	//setClaw(0);
-	//setMogo(0);
+if (SensorValue[autonSel]>100) {
+	setPIDValues();
+	startTask (pid);
+	liftTarget=-230;
+	wait1Msec(1000);
+	setMogo(0);
+	setChassis(-127,-127);
+	setMogo(-127);
+	wait1Msec(1000);
+	setChassis(0,0);
+	setMogo(-10);
+	setClaw(127);
+	wait1Msec(500);
+	setClaw(0);
+	setMogo(127);
+	wait1Msec(1000);
+	setMogo(0);
+	liftTarget=-1552;
+	wait1Msec(500);
+	setChassis(127,127);
+	wait1Msec(400);
+	setChassis(0,0);
+	wait1Msec(1000);
+	setChassis(-127,127);
+	wait1Msec(600);
+	setChassis(0,0);
+	setMogo(-127);
+	wait1Msec(600);
+	setMogo(0);
+	setChassis(127,127);
+	wait1Msec(350);
+	setChassis(0,0);
+	setClaw(0);
+	setMogo(0);
+}
 
+
+
+else if (SensorValue[autonSel]<1090){
 
 }
+
+
+else if (SensorValue[autonSel]<2705){
+
+}
+
+else if (SensorValue[autonSel]<3620){
+
+}
+}
+
+
 
 //                       User Control Task
 
