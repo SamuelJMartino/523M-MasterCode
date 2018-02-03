@@ -1,3 +1,4 @@
+#pragma config(Sensor, in7,    moGoPo,         sensorPotentiometer)
 #pragma config(Sensor, in8,    autonSel,       sensorPotentiometer)
 #pragma config(Sensor, dgtl1,  lift,           sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  drive,          sensorQuadEncoder)
@@ -36,7 +37,6 @@ void pre_auton()
 	turnPidEnabled=true;
 
 
-
 	bStopTasksBetweenModes = true;
 
 
@@ -51,8 +51,11 @@ task autonomous()
 startTask (drivePid);
 
 
+if (sensorValue[moGoPo]<100){
 
-if (SensorValue[autonSel]>100) {
+
+}
+if (SensorValue[autonSel]<100) {
 	setPIDValues();
 	startTask (pid);
 	liftTarget=-230;
